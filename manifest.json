@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "Hacker News Comments",
+  "version": "1.0",
+  "host_permissions": [
+    "https://news.ycombinator.com/*",
+    "https://api.openai.com/*",
+    "<all_urls>"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://news.ycombinator.com/item?id=*"
+      ],
+      "js": [
+        "content.js"
+      ]
+    }
+  ],
+  "options_ui": {
+    "page": "options.html"
+  },
+  "permissions": [
+    "clipboardWrite",
+    "storage"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  }
+}
