@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Hacker News Comments",
+  "name": "HN Commenter",
   "version": "1.0",
   "host_permissions": [
     "https://news.ycombinator.com/*",
@@ -9,21 +9,19 @@
   ],
   "content_scripts": [
     {
-      "matches": [
-        "https://news.ycombinator.com/item?id=*"
-      ],
-      "js": [
-        "content.js"
-      ]
+      "matches": ["https://news.ycombinator.com/item?id=*"],
+      "js": ["content.js"]
     }
   ],
+  "action": {
+    "default_popup": "popup.html",
+    "height": 600,
+    "width": 400
+  },
   "options_ui": {
     "page": "options.html"
   },
-  "permissions": [
-    "clipboardWrite",
-    "storage"
-  ],
+  "permissions": ["clipboardWrite", "storage"],
   "background": {
     "service_worker": "background.js"
   }

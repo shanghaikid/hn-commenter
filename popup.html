@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HN Commenter</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.1/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        width: 450px;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 p-6">
+    <h1 class="text-xl font-bold mb-4">HN Commenter</h1>
+    <div class="mb-4">
+      <label for="api_key" class="block text-gray-700 font-bold mb-2"
+        >OpenAI API Key:</label
+      >
+      <input
+        type="text"
+        id="api_key"
+        name="api_key"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      />
+    </div>
+
+    <div class="mb-4">
+      <label for="model_name" class="block text-gray-700 font-bold mb-2"
+        >OpenAI Model Name:</label
+      >
+      <select
+        id="model_name"
+        name="model_name"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      >
+        <option value="davinci">Davinci</option>
+        <option value="curie">Curie</option>
+        <option value="babbage">Babbage</option>
+      </select>
+    </div>
+
+    <div class="mb-4">
+      <label for="user_role" class="block text-gray-700 font-bold mb-2"
+        >User Role:</label
+      >
+      <input
+        type="text"
+        id="user_role"
+        name="user_role"
+        class="shadow appearance-none border rounded w-fusll py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      />
+    </div>
+
+    <div class="mb-4">
+      <label for="user_action" class="block text-gray-700 font-bold mb-2"
+        >User Action:</label
+      >
+      <input
+        type="text"
+        id="user_action"
+        name="user_action"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      />
+    </div>
+
+    <div class="flex justify-end">
+      <input
+        type="submit"
+        value="Save"
+        id="save_button"
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+      />
+    </div>
+
+    <!-- Add a div to display the status message -->
+    <div id="status"></div>
+    <script src="popup.js"></script>
+
+  </body>
+</html>
