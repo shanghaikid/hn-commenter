@@ -5,6 +5,6 @@ Chrome extension that will help you to reply hn thread.
 ## TODO
 
 - [x] support settting api-key
-- [] support setting model
-- [] support setting system role
-- [] support setting instruction
+- [x] support setting model
+- [x] support setting system role
+- [x] support setting final question

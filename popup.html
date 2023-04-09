@@ -28,39 +28,48 @@
 
     <div class="mb-4">
       <label for="model_name" class="block text-gray-700 font-bold mb-2"
-        >OpenAI Model Name:</label
+        >OpenAI Model Name:
+        <a
+          class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+          href="https://platform.openai.com/docs/models/overview"
+          >Models</a
+        ></label
       >
+
       <select
         id="model_name"
         name="model_name"
         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
       >
-        <option value="davinci">Davinci</option>
-        <option value="curie">Curie</option>
-        <option value="babbage">Babbage</option>
+        <option value="gpt-3.5-turbo">gpt-3.5-turbo</option>
+        <option value="gpt-3.5-turbo-0301">gpt-3.5-turbo-0301</option>
+        <option value="gpt-4">gpt-4-0314</option>
+        <option value="gpt-4-0314">gpt-4-0314</option>
+        <option value="gpt-4-32k">gpt-4-32k</option>
+        <option value="gpt-4-32k-0314">gpt-4-32k-0314</option>
       </select>
     </div>
 
     <div class="mb-4">
-      <label for="user_role" class="block text-gray-700 font-bold mb-2"
-        >User Role:</label
+      <label for="system_role" class="block text-gray-700 font-bold mb-2"
+        >What system role is ChatGPT:</label
       >
       <input
         type="text"
-        id="user_role"
-        name="user_role"
-        class="shadow appearance-none border rounded w-fusll py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        id="system_role"
+        name="system_role"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
       />
     </div>
 
     <div class="mb-4">
-      <label for="user_action" class="block text-gray-700 font-bold mb-2"
-        >User Action:</label
+      <label for="final_question" class="block text-gray-700 font-bold mb-2"
+        >Final question(not necessarily):</label
       >
       <input
         type="text"
-        id="user_action"
-        name="user_action"
+        id="final_question"
+        name="final_question"
         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
       />
     </div>
@@ -77,6 +86,5 @@
     <!-- Add a div to display the status message -->
     <div id="status"></div>
     <script src="popup.js"></script>
-
   </body>
 </html>
