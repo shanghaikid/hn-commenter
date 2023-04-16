@@ -1,6 +1,5 @@
 // const
-const buttonText = `Get reply from ChatGPT`;
-const copyButtonText = `Copy reply`;
+const buttonText = `Reply from ChatGPT`;
 
 // filter
 function filterText(text) {
@@ -31,7 +30,7 @@ function getMessages(button, data) {
   for (let i = rows.length - 1; i >= 0; i--) {
     const row = rows[i];
     const indentLevel = row.querySelector(".ind").getAttribute("indent");
-    const author = row.querySelector(".hnuser").innerText;
+    // const author = row.querySelector(".hnuser").innerText;
     const start = row.contains(button);
     started = started || start;
 
@@ -40,9 +39,7 @@ function getMessages(button, data) {
 
       const comment = {
         role: "user",
-        content: `${author} replied: ${filterText(
-          row.querySelector(".commtext.c00").innerText
-        )}`,
+        content: `${filterText(row.querySelector(".commtext.c00").innerText)}`,
         level: Number(indentLevel),
       };
 
@@ -69,25 +66,27 @@ function getMessages(button, data) {
   // build system
   const system = {
     role: "system",
-    content: data.systemRole || "As a software engineer in silicon valley",
+    content: `${
+      data.systemRole || "As a software engineer in silicon valley"
+    } `,
   };
-  messages.unshift(system);
+  // https://community.openai.com/t/the-system-role-how-it-influences-the-chat-behavior/87353/2
+  messages.push(system);
 
   // question
-  if (data.finalQuestion) {
-    messages.push({
-      role: "user",
-      content: data.finalQuestion,
-    });
-  }
+  messages.push({
+    role: "user",
+    content: data.finalQuestion || "How can I reply?",
+  });
 
   return messages;
 }
 
 // Create a function to extract the comments and generate a response
-function getReply(data, button) {
+function getReply({ data, button, link }) {
   const apiKey = data.apiKey;
   const model = data.modelName;
+  const temp = data.temp;
 
   const messages = getMessages(button, data);
   // Combine the messages into a single string
@@ -106,25 +105,21 @@ function getReply(data, button) {
     body: JSON.stringify({
       model: model,
       messages: messages,
-      temperature: 0.7,
+      temperature: temp,
     }),
   })
     .then((response) => response.json())
     .then((data) => {
       // Display the response to the user
       const responseText = data.choices[0].message.content;
-      // create a copy button
-      const copyBtn = document.createElement("button");
-      copyBtn.className = "copyButton";
-      copyBtn.innerText =  copyButtonText;
-      copyBtn.setAttribute("data-reply", responseText);
-      // put it beside the reply
-      button.insertAdjacentElement("afterend", copyBtn);
+      localStorage.setItem("reply", responseText);
+
       console.log(responseText);
+      window.location.href = link;
     })
     .catch((error) => {
       console.error(error);
-      alert("Error generating response. Please try again later.");
+      alert("Open AI is not working. Please try again later.");
     })
     .finally(() => {
       button.innerText = buttonText;
@@ -140,20 +135,10 @@ chrome.storage.sync.get(
       let button = document.createElement("button");
       button.innerText = buttonText;
       button.style.marginLeft = "10px";
-      button.addEventListener("click", () => getReply(data, button));
+      button.addEventListener("click", () =>
+        getReply({ data, button, link: link.href })
+      );
       link.parentNode.insertBefore(button, link.nextElementSibling);
-    });
-
-    // Listen for a click event on any of the buttons
-    document.addEventListener("click", (event) => {
-      if (event.target.classList.contains("copyButton")) {
-        const postTitle = event.target.getAttribute("data-reply");
-        navigator.clipboard.writeText(postTitle);
-        event.target.innerText = 'Copied';
-        setTimeout(() => {
-          event.target.innerText = copyButtonText;
-        }, 1000)
-      }
     });
   }
 );

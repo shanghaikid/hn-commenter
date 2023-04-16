@@ -3,6 +3,7 @@ const apiKeyInput = document.getElementById("api_key");
 const modelNameInput = document.getElementById("model_name");
 const systemRoleInput = document.getElementById("system_role");
 const finalQuestionInput = document.getElementById("final_question");
+const tempInput = document.getElementById("api_temp");
 
 // Get the stored options and update the input fields
 chrome.storage.sync.get(
@@ -12,8 +13,8 @@ chrome.storage.sync.get(
     modelNameInput.value = items.modelName || "";
     systemRoleInput.value =
       items.systemRole || "As a software engineer in silicon valley";
-    finalQuestionInput.value =
-      items.finalQuestion || "";
+    finalQuestionInput.value = items.finalQuestion || "How can I reply?";
+    tempInput.value = items.temp || 0.7;
   }
 );
 
@@ -27,6 +28,7 @@ saveButton.addEventListener("click", function () {
   const modelName = modelNameInput.value;
   const systemRole = systemRoleInput.value;
   const finalQuestion = finalQuestionInput.value;
+  const temp = tempInput.value;
 
   // Save the options to the Chrome storage
   chrome.storage.sync.set(
@@ -35,6 +37,7 @@ saveButton.addEventListener("click", function () {
       modelName,
       systemRole,
       finalQuestion,
+      temp,
     },
     function () {
       // Notify the user that the options have been saved

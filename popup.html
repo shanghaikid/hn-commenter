@@ -3,7 +3,7 @@
   <head>
     <title>HN Commenter</title>
     <link
-      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.1/dist/tailwind.min.css"
+      href="./tailwind.min.css"
       rel="stylesheet"
     />
     <style>
@@ -48,6 +48,18 @@
         <option value="gpt-4-32k">gpt-4-32k</option>
         <option value="gpt-4-32k-0314">gpt-4-32k-0314</option>
       </select>
+    </div>
+
+    <div class="mb-4">
+      <label for="api_temp" class="block text-gray-700 font-bold mb-2"
+        >temperature:</label
+      >
+      <input
+        type="text"
+        id="api_temp"
+        name="api_temp"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      />
     </div>
 
     <div class="mb-4">

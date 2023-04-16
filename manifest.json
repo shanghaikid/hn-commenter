@@ -11,6 +11,10 @@
     {
       "matches": ["https://news.ycombinator.com/item?id=*"],
       "js": ["content.js"]
+    },
+    {
+      "matches": ["https://news.ycombinator.com/reply?id=*"],
+      "js": ["content-reply.js"]
     }
   ],
   "action": {
