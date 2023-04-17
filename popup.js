@@ -11,9 +11,8 @@ chrome.storage.sync.get(
   function (items) {
     apiKeyInput.value = items.apiKey || "";
     modelNameInput.value = items.modelName || "";
-    systemRoleInput.value =
-      items.systemRole || "As a software engineer in silicon valley";
-    finalQuestionInput.value = items.finalQuestion || "How can I reply?";
+    systemRoleInput.value = items.systemRole || "";
+    finalQuestionInput.value = items.finalQuestion;
     tempInput.value = items.temp || 0.7;
   }
 );

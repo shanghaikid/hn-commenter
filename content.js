@@ -64,20 +64,24 @@ function getMessages(button, data) {
   messages.unshift(topInfo);
 
   // build system
-  const system = {
-    role: "system",
-    content: `${
-      data.systemRole || "As a software engineer in silicon valley"
-    } `,
-  };
-  // https://community.openai.com/t/the-system-role-how-it-influences-the-chat-behavior/87353/2
-  messages.push(system);
+  if (data.systemRole) {
+    const system = {
+      role: "system",
+      content: `${
+        data.systemRole || "As a software engineer in silicon valley"
+      } `,
+    };
+    // https://community.openai.com/t/the-system-role-how-it-influences-the-chat-behavior/87353/2
+    messages.push(system);
+  }
 
   // question
-  messages.push({
-    role: "user",
-    content: data.finalQuestion || "How can I reply?",
-  });
+  if (data.finalQuestion) {
+    messages.push({
+      role: "user",
+      content: data.finalQuestion,
+    });
+  }
 
   return messages;
 }
