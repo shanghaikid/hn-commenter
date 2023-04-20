@@ -2,11 +2,8 @@
   "manifest_version": 3,
   "name": "HN Commenter",
   "version": "1.0",
-  "host_permissions": [
-    "https://news.ycombinator.com/*",
-    "https://api.openai.com/*",
-    "<all_urls>"
-  ],
+  "description": "Reply hackernews post by chatGPT",
+  "host_permissions": ["https://news.ycombinator.com/*"],
   "content_scripts": [
     {
       "matches": ["https://news.ycombinator.com/item?id=*"],
@@ -21,9 +18,6 @@
     "default_popup": "popup.html",
     "height": 600,
     "width": 400
-  },
-  "options_ui": {
-    "page": "options.html"
   },
   "permissions": ["clipboardWrite", "storage"]
 }
